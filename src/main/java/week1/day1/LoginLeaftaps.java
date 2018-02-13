@@ -7,22 +7,29 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class LoginLeaftaps {
 	
-	static RemoteWebDriver driver;
+	 static RemoteWebDriver driver;
 
 	public static void main(String[] args) {
 		
 		//Open the browser
 		String browser = "chrome";
-		if ("firefox".equals(browser)) {
-			System.setProperty("webdriver.gecko.driver", "./drivers/geckodriver.exe");
-			driver = new FirefoxDriver();
-		} else if ("chrome".equals(browser)) {
-			System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
-			driver = new ChromeDriver();
-		} else {
-			System.setProperty("webdriver.edge.driver", "./drivers/MicrosoftWebDriver.exe");
-			driver =   new EdgeDriver();
-		}
+		switch (browser) {
+		case "firefox":
+			System.setProperty("webdriver.gecko.driver", 
+					"./drivers/geckodriver.exe");
+			 driver = new FirefoxDriver();
+			break;
+		case "chrome":
+			System.setProperty("webdriver.chrome.driver", 
+					"./drivers/chromedriver.exe");
+			 driver = new ChromeDriver();
+			break;
+		default:
+			System.setProperty("webdriver.edge.driver", 
+					"./drivers/MicrosoftWebDriver.exe");
+			 driver =   new EdgeDriver();
+			break;		
+			}
 		
 		//Load the URL
 		driver.get("http://leaftaps.com/opentaps/");
@@ -57,6 +64,18 @@ public class LoginLeaftaps {
 		//Close the browser
 		driver.close();
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 	}
-	
 }
