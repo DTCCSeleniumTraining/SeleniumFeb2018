@@ -48,7 +48,8 @@ public class LoginLeaftaps {
 
 		//Click the link CRM/SFA
 		driver.findElementByLinkText("CRM/SFA").click();
-
+		
+		
 		//Click the Leads link
 
 		//click the link Create Lead
