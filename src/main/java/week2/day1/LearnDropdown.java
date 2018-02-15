@@ -47,8 +47,8 @@ public class LearnDropdown {
 		//dd.selectByValue("LEAD_DIRECTMAIL");
 		//dd.selectByIndex(3);
 		List<WebElement> opt = dd.getOptions();
-		/*int size = opt.size();
-		dd.selectByIndex(size-2);*/
+		int size = opt.size();
+		dd.selectByIndex(size-2);
 		for (WebElement eachOpt : opt) {
 			System.out.println(eachOpt.getText());
 		}
