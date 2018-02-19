@@ -39,8 +39,6 @@ public class LearnFindElements {
 			
 		}
 		
-		
-		System.out.println();
 	}
 
 
