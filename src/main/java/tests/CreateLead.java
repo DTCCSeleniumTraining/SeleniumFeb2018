@@ -2,6 +2,8 @@ package tests;
 
 import org.testng.annotations.Test;
 
+import wrappers.LoginLeaftaps;
+
 public class CreateLead extends LoginLeaftaps{
 	@Test
 	public void createLead() {
