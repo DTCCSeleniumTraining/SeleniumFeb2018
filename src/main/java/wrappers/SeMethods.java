@@ -8,6 +8,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -171,6 +172,8 @@ public class SeMethods implements Wrappers {
 			System.out.println("The button with id " + id + " is clicked");
 		} catch (NoSuchElementException e) {
 			throw new RuntimeException("Exception occured");
+		} catch (UnhandledAlertException e) {
+			throw new RuntimeException("Alert Exception occured");		
 		} catch (WebDriverException e) {
 			throw new RuntimeException("Exception occured");
 		} catch (Exception e) {
