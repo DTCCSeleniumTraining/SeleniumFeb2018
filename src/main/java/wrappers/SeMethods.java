@@ -5,113 +5,186 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.Select;
 
-public class SeMethods implements Wrappers{
+public class SeMethods implements Wrappers {
 
 	RemoteWebDriver driver;
 	int i = 1;
 
 	@Override
 	public void invokeApp(String browser, String url) {
-		switch (browser) {
-		case "firefox":
-			System.setProperty("webdriver.gecko.driver", 
-					"./drivers/geckodriver.exe");
-			driver = new FirefoxDriver();
-			break;
-		case "chrome":
-			System.setProperty("webdriver.chrome.driver", 
-					"./drivers/chromedriver.exe");
-			driver = new ChromeDriver();
-			break;
-		default:
-			System.setProperty("webdriver.edge.driver", 
-					"./drivers/MicrosoftWebDriver.exe");
-			driver =   new EdgeDriver();
-			break;		
+		try {
+			switch (browser) {
+			case "firefox":
+				System.setProperty("webdriver.gecko.driver", "./drivers/geckodriver.exe");
+				driver = new FirefoxDriver();
+				break;
+			case "chrome":
+				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
+				driver = new ChromeDriver();
+				break;
+			default:
+				System.setProperty("webdriver.edge.driver", "./drivers/MicrosoftWebDriver.exe");
+				driver = new EdgeDriver();
+				break;
+			}
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			driver.get(url);
+			driver.manage().window().maximize();
+
+		} catch (WebDriverException e) {
+			throw new RuntimeException("Exception occured: " + e.getMessage());
+		} catch (Exception e) {
+			throw new RuntimeException("Exception occured: " + e.getMessage());
+		} finally {
+			takeSnap();
 		}
-
-		// implicit wait
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
-		//Load the URL
-		driver.get(url);
-
-		//Maximize the browser
-		driver.manage().window().maximize();
-		
-		takeSnap();
-
-
 	}
 
 	@Override
 	public void enterById(String idValue, String data) {
-		driver.findElementById(idValue).clear();
-		driver.findElementById(idValue).sendKeys(data);
-		System.out.println("The text field with id "+idValue+" entered with value :"+data);
-		takeSnap();
+		try {
+			driver.findElementById(idValue).clear();
+			driver.findElementById(idValue).sendKeys(data);
+			System.out.println("The text field with id " + idValue + " entered with value :" + data);
+		} catch (NoSuchElementException e) {
+			throw new RuntimeException("Exception occured: " + e.getMessage());
+		} catch (WebDriverException e) {
+			throw new RuntimeException("Exception occured: " + e.getMessage());
+		} catch (Exception e) {
+			throw new RuntimeException("Exception occured: " + e.getMessage());
+		} finally {
+			takeSnap();
+		}
 
 	}
 
 	@Override
 	public void enterByName(String nameValue, String data) {
-		driver.findElementByName(nameValue).clear();
-		driver.findElementByName(nameValue).sendKeys(data);
-		System.out.println("The text field with id "+nameValue+" entered with value :"+data);
-		takeSnap();
+		try {
+			driver.findElementByName(nameValue).clear();
+			driver.findElementByName(nameValue).sendKeys(data);
+			System.out.println("The text field with id " + nameValue + " entered with value :" + data);
+		} catch (NoSuchElementException e) {
+			throw new RuntimeException("Exception occured: " + e.getMessage());
+		} catch (WebDriverException e) {
+			throw new RuntimeException("Exception occured: " + e.getMessage());
+		} catch (Exception e) {
+			throw new RuntimeException("Exception occured: " + e.getMessage());
+		} finally {
+			takeSnap();
+		}
 	}
 
 	@Override
 	public void enterByXpath(String xpathValue, String data) {
 		driver.findElementByXPath(xpathValue).clear();
-		driver.findElementByXPath(xpathValue).sendKeys(data);;
-		System.out.println("The text field with id "+xpathValue+" entered with value :"+data);
+		driver.findElementByXPath(xpathValue).sendKeys(data);
+		System.out.println("The text field with id " + xpathValue + " entered with value :" + data);
 		takeSnap();
 
 	}
 
 	@Override
 	public boolean verifyTitle(String title) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean isMatch = false;
+		try {
+			if (driver.getTitle().equals(title)) {
+				isMatch = true;
+			}
+		} catch (Exception e) {
+			throw new RuntimeException("Exception Occured");
+		}
+		return isMatch;
 	}
 
 	@Override
 	public void verifyTextById(String id, String text) {
-		// TODO Auto-generated method stub
+		try {
+			String actualText = driver.findElementById(id).getText();
+			if (actualText.equals(text)) {
+				System.out.println("Displayed test matches with the expected text");
+			} else {
+				System.err.println("Displayed test does not matches with the expected text");
+			}
+		} catch (NoSuchElementException e) {
+			throw new RuntimeException("Exception occured");
+		} catch (WebDriverException e) {
+			throw new RuntimeException("Exception occured");
+		} catch (Exception e) {
+			throw new RuntimeException("Exception occured");
+		}
 
 	}
 
 	@Override
 	public void verifyTextByXpath(String xpath, String text) {
-		// TODO Auto-generated method stub
+		try {
+			String actualText = driver.findElementByXPath(xpath).getText();
+			if (actualText.equals(text)) {
+				System.out.println("Displayed test matches with the expected text");
+			} else {
+				System.err.println("Displayed test does not matches with the expected text");
+			}
+		} catch (NoSuchElementException e) {
+			throw new RuntimeException("Exception occured");
+		} catch (WebDriverException e) {
+			throw new RuntimeException("Exception occured");
+		} catch (Exception e) {
+			throw new RuntimeException("Exception occured");
+		}
 
 	}
 
 	@Override
 	public void verifyTextContainsByXpath(String xpath, String text) {
-		// TODO Auto-generated method stub
+		try {
+			String actualText = driver.findElementByXPath(xpath).getText();
+			if (actualText.contains(text)) {
+				System.out.println("Displayed test matches with the expected text");
+			} else {
+				System.err.println("Displayed test does not matches with the expected text");
+			}
+		} catch (NoSuchElementException e) {
+			throw new RuntimeException("Exception occured");
+		} catch (WebDriverException e) {
+			throw new RuntimeException("Exception occured");
+		} catch (Exception e) {
+			throw new RuntimeException("Exception occured");
+		}
 
 	}
 
 	@Override
 	public void clickById(String id) {
-		driver.findElementById(id).click();
-		System.out.println("The button with id "+id+" is clicked");
-		takeSnap();
+		try {
+			driver.findElementById(id).click();
+			System.out.println("The button with id " + id + " is clicked");
+		} catch (NoSuchElementException e) {
+			throw new RuntimeException("Exception occured");
+		} catch (WebDriverException e) {
+			throw new RuntimeException("Exception occured");
+		} catch (Exception e) {
+			throw new RuntimeException("Exception occured");
+		} finally {
+			takeSnap();
+		}
 
 	}
 
 	@Override
 	public void clickByClassName(String classVal) {
 		driver.findElementByClassName(classVal).click();
-		System.out.println("The button with class name "+classVal+" is clicked");
+		System.out.println("The button with class name " + classVal + " is clicked");
 		takeSnap();
 
 	}
@@ -119,64 +192,98 @@ public class SeMethods implements Wrappers{
 	@Override
 	public void clickByName(String name) {
 		driver.findElementByName(name).click();
-		
 
 	}
 
 	@Override
 	public void clickByLink(String name) {
 		driver.findElementByLinkText(name).click();
-		System.out.println("The link with name "+name+" is clicked");
+		System.out.println("The link with name " + name + " is clicked");
 		takeSnap();
-
 
 	}
 
 	@Override
 	public void clickByLinkNoSnap(String name) {
 		driver.findElementByLinkText(name).click();
-		System.out.println("The link with name "+name+" is clicked");
-		
+		System.out.println("The link with name " + name + " is clicked");
 
 	}
 
 	@Override
 	public void clickByXpath(String xpathVal) {
 		driver.findElementByXPath(xpathVal).click();
-		System.out.println("The xpath with name "+xpathVal+" is clicked");
+		System.out.println("The xpath with name " + xpathVal + " is clicked");
 		takeSnap();
 	}
 
 	@Override
 	public void clickByXpathNoSnap(String xpathVal) {
 		driver.findElementByXPath(xpathVal).click();
-		System.out.println("The xpath with name "+xpathVal+" is clicked");
-		
+		System.out.println("The xpath with name " + xpathVal + " is clicked");
 
 	}
 
 	@Override
 	public String getTextById(String idVal) {
-		// TODO Auto-generated method stub
-		return null;
+		String text = null;
+		try {
+			text = driver.findElementById(idVal).getText();
+		} catch (NoSuchElementException e) {
+			throw new RuntimeException("Exception occured");
+		} catch (WebDriverException e) {
+			throw new RuntimeException("Exception occured");
+		} catch (Exception e) {
+			throw new RuntimeException("Exception occured");
+		}
+		return text;
 	}
 
 	@Override
 	public String getTextByXpath(String xpathVal) {
-		// TODO Auto-generated method stub
-		return null;
+		String text = null;
+		try {
+			text = driver.findElementByXPath(xpathVal).getText();
+		} catch (NoSuchElementException e) {
+			throw new RuntimeException("Exception occured");
+		} catch (WebDriverException e) {
+			throw new RuntimeException("Exception occured");
+		} catch (Exception e) {
+			throw new RuntimeException("Exception occured");
+		}
+		return text;
 	}
 
 	@Override
 	public void selectVisibileTextById(String id, String value) {
-		// TODO Auto-generated method stub
-
+		try {
+			Select dropDown = new Select(driver.findElementById(id));
+			dropDown.selectByVisibleText(value);
+		} catch (NoSuchElementException e) {
+			throw new RuntimeException("Exception occured");
+		} catch (WebDriverException e) {
+			throw new RuntimeException("Exception occured");
+		} catch (Exception e) {
+			throw new RuntimeException("Exception occured");
+		} finally {
+			takeSnap();
+		}
 	}
 
 	@Override
 	public void selectIndexById(String id, int value) {
-		// TODO Auto-generated method stub
-
+		try {
+			Select dropDown = new Select(driver.findElementById(id));
+			dropDown.selectByIndex(value);
+		} catch (NoSuchElementException e) {
+			throw new RuntimeException("Exception occured");
+		} catch (WebDriverException e) {
+			throw new RuntimeException("Exception occured");
+		} catch (Exception e) {
+			throw new RuntimeException("Exception occured");
+		} finally {
+			takeSnap();
+		}
 	}
 
 	@Override
@@ -193,44 +300,68 @@ public class SeMethods implements Wrappers{
 
 	@Override
 	public void acceptAlert() {
-		// TODO Auto-generated method stub
-
+		try {
+			driver.switchTo().alert().accept();
+		} catch (NoAlertPresentException e) {
+			throw new RuntimeException("Exception occured");
+		} catch (WebDriverException e) {
+			throw new RuntimeException("Exception occured");
+		} catch (Exception e) {
+			throw new RuntimeException("Exception occured");
+		}
 	}
 
 	@Override
 	public void dismissAlert() {
-		// TODO Auto-generated method stub
-
+		try {
+			driver.switchTo().alert().dismiss();
+		} catch (NoAlertPresentException e) {
+			throw new RuntimeException("Exception occured");
+		} catch (WebDriverException e) {
+			throw new RuntimeException("Exception occured");
+		} catch (Exception e) {
+			throw new RuntimeException("Exception occured");
+		}
 	}
 
 	@Override
 	public String getAlertText() {
-		// TODO Auto-generated method stub
-		return null;
+		String text = null;
+		try {
+			text = driver.switchTo().alert().getText();
+		} catch (NoSuchElementException e) {
+			throw new RuntimeException("Exception occured");
+		} catch (WebDriverException e) {
+			throw new RuntimeException("Exception occured");
+		} catch (Exception e) {
+			throw new RuntimeException("Exception occured");
+		}
+		return text;
 	}
 
 	@Override
 	public void takeSnap() {
-		//Screenshot
+		// Screenshot
 		File src = driver.getScreenshotAs(OutputType.FILE);
-		File dest = new File("./Snaps/img"+i+".png");
+		File dest = new File("./Snaps/img" + i + ".png");
 		i++;
 		try {
 			FileUtils.copyFile(src, dest);
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			throw new RuntimeException();
-		}
-		catch (Exception e) {
-
-		} finally {
-
+		} catch (Exception e) {
+			System.out.println("Exception occured: " + e.getMessage());
 		}
 	}
 
 	@Override
 	public void closeBrowser() {
-		// TODO Auto-generated method stub
+		try {
+			driver.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 

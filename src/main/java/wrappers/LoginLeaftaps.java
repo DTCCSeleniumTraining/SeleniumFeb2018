@@ -1,10 +1,13 @@
 package wrappers;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+
 import wrappers.SeMethods;
 
 public class LoginLeaftaps extends SeMethods{
 	
-	
+	@BeforeMethod
 	public void login() {
 		invokeApp("chrome", "http://leaftaps.com/opentaps");
 		enterById("username", "DemoSalesManager");
@@ -12,7 +15,7 @@ public class LoginLeaftaps extends SeMethods{
 		clickByClassName("decorativeSubmit");
 		clickByLink("CRM/SFA");
 	}
-	
+	@AfterMethod
 	public void closeApp() {
 		closeAllBrowsers();
 	}
