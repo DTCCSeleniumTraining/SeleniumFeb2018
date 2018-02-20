@@ -61,13 +61,18 @@ public class SeMethods implements Wrappers{
 
 	@Override
 	public void enterByName(String nameValue, String data) {
-		// TODO Auto-generated method stub
-
+		driver.findElementByName(nameValue).clear();
+		driver.findElementByName(nameValue).sendKeys(data);
+		System.out.println("The text field with id "+nameValue+" entered with value :"+data);
+		takeSnap();
 	}
 
 	@Override
 	public void enterByXpath(String xpathValue, String data) {
-		// TODO Auto-generated method stub
+		driver.findElementByXPath(xpathValue).clear();
+		driver.findElementByXPath(xpathValue).sendKeys(data);;
+		System.out.println("The text field with id "+xpathValue+" entered with value :"+data);
+		takeSnap();
 
 	}
 
@@ -97,7 +102,9 @@ public class SeMethods implements Wrappers{
 
 	@Override
 	public void clickById(String id) {
-		// TODO Auto-generated method stub
+		driver.findElementById(id).click();
+		System.out.println("The button with id "+id+" is clicked");
+		takeSnap();
 
 	}
 
@@ -111,31 +118,40 @@ public class SeMethods implements Wrappers{
 
 	@Override
 	public void clickByName(String name) {
-		// TODO Auto-generated method stub
+		driver.findElementByName(name).click();
+		
 
 	}
 
 	@Override
 	public void clickByLink(String name) {
-		// TODO Auto-generated method stub
+		driver.findElementByLinkText(name).click();
+		System.out.println("The link with name "+name+" is clicked");
+		takeSnap();
+
 
 	}
 
 	@Override
 	public void clickByLinkNoSnap(String name) {
-		// TODO Auto-generated method stub
+		driver.findElementByLinkText(name).click();
+		System.out.println("The link with name "+name+" is clicked");
+		
 
 	}
 
 	@Override
 	public void clickByXpath(String xpathVal) {
-		// TODO Auto-generated method stub
-
+		driver.findElementByXPath(xpathVal).click();
+		System.out.println("The xpath with name "+xpathVal+" is clicked");
+		takeSnap();
 	}
 
 	@Override
 	public void clickByXpathNoSnap(String xpathVal) {
-		// TODO Auto-generated method stub
+		driver.findElementByXPath(xpathVal).click();
+		System.out.println("The xpath with name "+xpathVal+" is clicked");
+		
 
 	}
 
@@ -210,7 +226,6 @@ public class SeMethods implements Wrappers{
 		} finally {
 
 		}
-
 	}
 
 	@Override
@@ -221,8 +236,7 @@ public class SeMethods implements Wrappers{
 
 	@Override
 	public void closeAllBrowsers() {
-		// TODO Auto-generated method stub
-
+		driver.quit();
 	}
 
 }
