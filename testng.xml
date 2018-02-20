@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="DTCC">
+  <test name="LeadsModule">
+    <classes>
+      <class name="tests.CreateLead"/>
+      <class name="tests.EditLead"></class>
+    </classes>
+  </test> <!-- LeadsModule -->
+</suite> <!-- DTCC -->

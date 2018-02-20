@@ -1,0 +1,27 @@
+Merge Lead Steps
+1. Launch the browser
+2. Enter the username
+3. Enter the password
+4. Click Login
+5. Click crm/sfa link
+6. Click Leads link
+7. Click Merge leads
+8. Click on Icon near From Lead
+9. Move to new window
+10. Enter Lead ID
+11. Click Find Leads button
+12. Click First Resulting lead
+13. Switch back to primary window
+14. Click on Icon near To Lead
+15. Move to new window
+16. Enter Lead ID
+17. Click Find Leads button
+18. Click First Resulting lead
+19. Switch back to primary window
+20. Click Merge
+21. Accept Alert
+22. Click Find Leads
+23. Enter From Lead ID
+24. Click Find Leads
+25. Verify error msg
+26. Close the browser (Do not log out)
