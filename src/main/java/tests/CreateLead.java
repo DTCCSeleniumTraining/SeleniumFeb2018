@@ -1,6 +1,5 @@
 package tests;
 
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import wrappers.LoginLeaftaps;
@@ -18,7 +17,7 @@ public class CreateLead extends LoginLeaftaps {
 		clickByName("submitButton");
 	}
 	
-	@DataProvider(name="getData")
+	/*@DataProvider(name="getData")
 	public Object[][] fetchData() {
 		String data[][] = new String[2][3];
 		data[0][0] = "Testleaf";
@@ -29,7 +28,7 @@ public class CreateLead extends LoginLeaftaps {
 		data[1][1] = "Sethu";
 		data[1][2] = "S";
 		return data;
-	}
+	}*/
 	
 	
 }
