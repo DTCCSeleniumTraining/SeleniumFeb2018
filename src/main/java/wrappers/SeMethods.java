@@ -105,6 +105,7 @@ public class SeMethods implements Wrappers {
 		try {
 			if (driver.getTitle().equals(title)) {
 				isMatch = true;
+				System.out.println("Title matched");
 			}
 		} catch (Exception e) {
 			throw new RuntimeException("Exception Occured");

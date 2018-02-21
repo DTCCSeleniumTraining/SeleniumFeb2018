@@ -12,14 +12,14 @@ public class MergeLead extends LoginLeaftaps {
 		clickByXpath("(//img[@alt='Lookup'])[1]");
 		switchToLastWindow();
 		enterByXpath("//input[@name='id']", "10401");
-		clickByXpath("(//button[@type='button'])[1]");
+		clickByXpath("//button[text()='Find Leads']");
 		Thread.sleep(2000);
 		clickByXpathNoSnap("(//div[contains(@class,'x-grid3-cell-inner x-grid3-col-partyId')]//a)[1]");
 		switchToParentWindow();
 		clickByXpath("(//img[@alt='Lookup'])[2]");
 		switchToLastWindow();
 		enterByXpath("//input[@name='id']", "10801");
-		clickByXpath("(//button[@type='button'])[1]");
+		clickByXpath("//button[text()='Find Leads']");
 		Thread.sleep(2000);
 		clickByXpathNoSnap("(//div[contains(@class,'x-grid3-cell-inner x-grid3-col-partyId')]//a)[1]");
 		switchToParentWindow();
