@@ -2,11 +2,15 @@ package wrappers;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.NoSuchWindowException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriverException;
@@ -288,16 +292,54 @@ public class SeMethods implements Wrappers {
 			takeSnap();
 		}
 	}
+/*	public void switchToWindow(int i) {
+		try {
+			Set<String> allWindows = driver.getWindowHandles();
+			List<String> list = new ArrayList<String>();
+			list.addAll(allWindows);
+			driver.switchTo().window(list.get(i));
+			System.out.println("Switched to last window");
+		} catch (NoSuchWindowException e) {
+			throw new RuntimeException("Exception occured");
+		}catch (WebDriverException e) {
+			throw new RuntimeException("Exception occured");
+		} catch (Exception e) {
+			throw new RuntimeException("Exception occured");
+		}		
+	}*/
 
 	@Override
 	public void switchToParentWindow() {
-		// TODO Auto-generated method stub
-
+		try {
+			Set<String> allWindows = driver.getWindowHandles();
+			List<String> list = new ArrayList<String>();
+			list.addAll(allWindows);
+			driver.switchTo().window(list.get(0));
+			System.out.println("Switched to last window");
+		} catch (NoSuchWindowException e) {
+			throw new RuntimeException("Exception occured");
+		}catch (WebDriverException e) {
+			throw new RuntimeException("Exception occured");
+		} catch (Exception e) {
+			throw new RuntimeException("Exception occured");
+		}		
 	}
 
 	@Override
 	public void switchToLastWindow() {
-		// TODO Auto-generated method stub
+		try {
+			Set<String> allWindows = driver.getWindowHandles();
+			List<String> list = new ArrayList<String>();
+			list.addAll(allWindows);
+			driver.switchTo().window(list.get(list.size()-1));
+			System.out.println("Switched to last window");
+		} catch (NoSuchWindowException e) {
+			throw new RuntimeException("Exception occured");
+		}catch (WebDriverException e) {
+			throw new RuntimeException("Exception occured");
+		} catch (Exception e) {
+			throw new RuntimeException("Exception occured");
+		}
 
 	}
 

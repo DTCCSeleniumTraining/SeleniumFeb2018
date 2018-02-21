@@ -9,7 +9,7 @@ public class CreateLead extends LoginLeaftaps {
 	public void createLead() {
 		
 		clickByLink("Leads");
-		clickByLink("Create Lea");
+		clickByLink("Create Lead");
 		enterById("createLeadForm_companyName", "testleaf");
 		enterById("createLeadForm_firstName", "koushik");
 		enterById("createLeadForm_lastName", "chatterjee");
