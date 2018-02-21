@@ -1,5 +1,6 @@
 package tests;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.testng.annotations.Test;
 
 import wrappers.LoginLeaftaps;
@@ -7,8 +8,8 @@ import wrappers.LoginLeaftaps;
 public class EditLead extends LoginLeaftaps {
 	
 	String compName = "DTCC";
-	
-	@Test
+	@Test(expectedExceptions= {Exception.class, NoSuchElementException.class})
+	//@Test(alwaysRun=true/*dependsOnMethods=("tests.CreateLead.createLead")*//*enabled=false*/)
 	public void editLead() throws Exception {
 	
 		clickByLink("Leads");
