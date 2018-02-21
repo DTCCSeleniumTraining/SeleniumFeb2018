@@ -2,6 +2,7 @@ package wrappers;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 
 import wrappers.SeMethods;
@@ -19,6 +20,19 @@ public class LoginLeaftaps extends SeMethods{
 	@AfterMethod
 	public void closeApp() {
 		closeAllBrowsers();
+	}
+	
+	@DataProvider(name="getData")
+	public Object[][] fetchData() {
+		String data[][] = new String[2][3];
+		data[0][0] = "Testleaf";
+		data[0][1] = "koushik";
+		data[0][2] = "chatterjee";
+		
+		data[1][0] = "Wipro";
+		data[1][1] = "Sethu";
+		data[1][2] = "S";
+		return data;
 	}
 
 }
