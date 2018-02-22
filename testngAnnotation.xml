@@ -8,7 +8,7 @@
 		<parameter name="browser" value="chrome"></parameter>
 		<classes>
 			<class name="tests.CreateLead" />
-			<class name="tests.EditLead" />
+			<!-- <class name="tests.EditLead" /> -->
 		</classes>
 		</test>
 <!-- 	</test> Test

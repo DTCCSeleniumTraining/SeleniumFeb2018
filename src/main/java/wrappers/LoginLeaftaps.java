@@ -1,13 +1,19 @@
 package wrappers;
 
+import java.io.IOException;
+
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 
+import tests.LearnDP;
 import wrappers.SeMethods;
 
 public class LoginLeaftaps extends SeMethods{
+	
+	public String excelFileName=null;
+	
 	@Parameters({"browser","url", "uName", "pswd"})
 	@BeforeMethod
 	public void login(String browser, String url, String userName, String passwd) {
@@ -20,19 +26,12 @@ public class LoginLeaftaps extends SeMethods{
 	@AfterMethod
 	public void closeApp() {
 		closeAllBrowsers();
-	}
-	
-	@DataProvider(name="getData")
-	public Object[][] fetchData() {
-		String data[][] = new String[2][3];
-		data[0][0] = "Testleaf";
-		data[0][1] = "koushik";
-		data[0][2] = "chatterjee";
+	}	
+	@DataProvider(name="excelRead")
+	public Object[][] fetchData() throws IOException {
+		LearnDP dataprovider = new LearnDP();
+		return dataprovider.readData(excelFileName);
 		
-		data[1][0] = "Wipro";
-		data[1][1] = "Sethu";
-		data[1][2] = "S";
-		return data;
 	}
 
 }

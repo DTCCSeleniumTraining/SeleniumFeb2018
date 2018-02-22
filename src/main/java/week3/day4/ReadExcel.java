@@ -1,4 +1,4 @@
-package tests;
+package week3.day4;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,12 +8,13 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
-public class LearnDP {
-	public Object[][] readData(String fileName) throws IOException {
+public class ReadExcel {
+	@Test
+	public void readData() throws IOException {
 		//Goto file location
-		FileInputStream fis = new FileInputStream(new File("./data/"+fileName+".xlsx"));
+		FileInputStream fis = new FileInputStream(new File("./data/create.xlsx"));
 		//Open workbook
 		XSSFWorkbook wbook = new XSSFWorkbook(fis);
 		//Goto sheet
@@ -27,25 +28,39 @@ public class LearnDP {
 		int columnCount = sheet.getRow(0).getLastCellNum();
 		System.out.println(columnCount);
 		//Read the data
-		String[][] data = new String[rowCount][columnCount];
 		for (int i = 1; i <= rowCount; i++) {
 			XSSFRow row = sheet.getRow(i);
 			for (int j = 0; j < columnCount; j++) {
 				XSSFCell cell = row.getCell(j);
-				data[i-1][j] = cell.getStringCellValue();
+				System.out.println(cell.getStringCellValue());
 			}
 		}wbook.close();
-		return data;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
