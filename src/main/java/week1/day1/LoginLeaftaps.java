@@ -12,7 +12,7 @@ public class LoginLeaftaps {
 	public static void main(String[] args) {
 		
 		//Open the browser
-		String browser = "chrome";
+		String browser = "firefox";
 		switch (browser) {
 		case "firefox":
 			System.setProperty("webdriver.gecko.driver", 
