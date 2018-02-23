@@ -10,7 +10,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.testng.annotations.Test;
 
 public class WriteExcel {
-@Test
+	@Test
 	public void writeExcel() throws Exception {
 
 		String data[][] = new String[2][3];
@@ -25,20 +25,20 @@ public class WriteExcel {
 		XSSFWorkbook wbook = new XSSFWorkbook();
 		//Create a sheet
 		XSSFSheet sheet = wbook.createSheet("sheet1");
-		//Create row
 		int rowNumber = 0;
 		for (String[] row : data) {
+			//Create row
 			XSSFRow createRow = sheet.createRow(rowNumber);
 			int columnCount = 0;
 			for (String columnData : row) {
+				//Create cell
 				XSSFCell createCell = createRow.createCell(columnCount);
+				//Write data
 				createCell.setCellValue(columnData);
 				columnCount++;
 			}
 			rowNumber++;
 		}
-		//Create cell
-		//Write data
 		//save
 		FileOutputStream fos = new FileOutputStream(new File("./data/write.xlsx"));
 		wbook.write(fos);

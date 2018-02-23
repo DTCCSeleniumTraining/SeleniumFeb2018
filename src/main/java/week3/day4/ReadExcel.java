@@ -35,6 +35,7 @@ public class ReadExcel {
 				System.out.println(cell.getStringCellValue());
 			}
 		}wbook.close();
+		fis.close();
 	}
 }
 
