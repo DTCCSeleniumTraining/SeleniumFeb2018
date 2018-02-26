@@ -1,9 +1,11 @@
 package pages;
 
-public class HomePage {
-	public MyHomePAge clickCRMSFA() {
-		
-		return new MyHomePAge();
+import wrappers.SeMethods;
+
+public class HomePage extends SeMethods{
+	public MyHomePage clickCRMSFA() {
+		clickByLink("CRM/SFA");
+		return new MyHomePage();
 	}
 
 }
