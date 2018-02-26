@@ -1,0 +1,1 @@
+java -jar selenium-server-standalone-3.9.1.jar -role wd -hub "http://192.168.1.104:1234/grid/register" -port 3456 -timeout 30 -maxSession 2 -browser browserName=chrome,maxInstances=3,platform=WINDOWS
