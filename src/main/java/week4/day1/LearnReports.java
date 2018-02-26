@@ -11,15 +11,22 @@ import com.relevantcodes.extentreports.LogStatus;
 public class LearnReports {
 	@Test
 	public void report() {
-		ExtentReports reports = new ExtentReports("./Reports/result.html", false);
-		reports.loadConfig(new File("./Config.xml"));
-		ExtentTest test = reports.startTest("TC001", "Generate a sample report");
-		test.assignAuthor("Sethu");
-		test.assignCategory("Smoke");
-		test.log(LogStatus.PASS, "sample test"+test.addScreenCapture(".././Snaps/img1.png"));
-		reports.endTest(test);
-		reports.flush();
-		
+		// Create HTML
+		ExtentReports reports = new ExtentReports("./Reports/result.html", false); // Before Suite
+		// Load config.xml
+		reports.loadConfig(new File("./Config.xml"));	// Before Suite
+		// Create Test
+		ExtentTest test = reports.startTest("TC001", "Generate a sample report");	//Before Test
+		// Assign Author
+		test.assignAuthor("Sethu");	// Before Class
+		// Assign Category
+		test.assignCategory("Smoke");		// Before Class
+		// Create log
+		test.log(LogStatus.PASS, "sample test"+test.addScreenCapture(".././Snaps/img1.png")); //@Test
+		// End Test
+		reports.endTest(test);	//After Test
+		// save Report
+		reports.flush();	// After Suite
 		
 	}
 

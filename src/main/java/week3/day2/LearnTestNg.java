@@ -15,14 +15,6 @@ public class LearnTestNg {
   public void test0() {
 	  System.out.println("@Test0");
   }
-  @Test
-  public void abc() {
-	  System.out.println("@abc");
-  }
-  @Test
-  public void test2() {
-	  System.out.println("@Test2");
-  }
   @BeforeMethod
   public void beforeMethod() {
 	  System.out.println("@beforeMethod");
