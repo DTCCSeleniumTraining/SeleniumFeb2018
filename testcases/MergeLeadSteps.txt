@@ -25,3 +25,5 @@ Merge Lead Steps
 24. Click Find Leads
 25. Verify error msg
 26. Close the browser (Do not log out)
+27.
+28. Close Browser

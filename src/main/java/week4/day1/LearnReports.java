@@ -16,7 +16,7 @@ public class LearnReports {
 		// Load config.xml
 		reports.loadConfig(new File("./Config.xml"));	// Before Suite
 		// Create Test
-		ExtentTest test = reports.startTest("TC001", "Generate a sample report");	//Before Test
+		ExtentTest test = reports.startTest("TC001", "Generate a sample report");	//Before Method
 		// Assign Author
 		test.assignAuthor("Sethu");	// Before Class
 		// Assign Category
@@ -24,7 +24,7 @@ public class LearnReports {
 		// Create log
 		test.log(LogStatus.PASS, "sample test"+test.addScreenCapture(".././Snaps/img1.png")); //@Test
 		// End Test
-		reports.endTest(test);	//After Test
+		reports.endTest(test);	//After Method
 		// save Report
 		reports.flush();	// After Suite
 		
